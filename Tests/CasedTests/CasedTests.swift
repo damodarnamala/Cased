@@ -2,14 +2,24 @@ import XCTest
 @testable import Cased
 
 final class CasedTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Cased().text, "Hello, World!")
+   
+    func test_returnEmptyIfFirstOrLastNameIsEmpty() {
+        let fName: String? = "Damodar "
+        let name = String.fulName(fName, nil)
+        XCTAssertEqual(name, "")
     }
+    
+    func test_returnFullNameWhenFirstNameAndLastNameAreNotEmpty() {
+        let fName: String? = "Damodar"
+        let lName: String? = "Namala"
+
+        let name = String.fulName(fName, lName)
+        XCTAssertEqual(name, "Damodar Namala")
+    }
+    
 
     static var allTests = [
-        ("testExample", testExample),
+        ("emptyString", test_returnEmptyIfFirstOrLastNameIsEmpty),
+        ("nonEmptyString", test_returnFullNameWhenFirstNameAndLastNameAreNotEmpty)
     ]
 }
